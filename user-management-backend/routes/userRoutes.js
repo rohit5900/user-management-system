@@ -9,11 +9,14 @@ router.get("/", auth, isAdmin, async (req, res) => {
   res.json(users);
 });
 
+
 // Update User (Admin)
 router.put("/:id", auth, isAdmin, async (req, res) => {
-  const user = await User.findByIdAndUpdate(req.params.id, req.body);
+  const { name, email, role } = req.body;
+  const user = await User.findByIdAndUpdate(req.params.id, { name, email, role }, { new: true });
   res.json(user);
 });
+
 
 // Delete User (Admin)
 router.delete("/:id", auth, isAdmin, async (req, res) => {
