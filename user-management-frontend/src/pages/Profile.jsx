@@ -1,16 +1,15 @@
-import Navbar from "../components/Navbar";
+import Layout from "../components/Layout";
 
 export default function Profile() {
   const role = localStorage.getItem("role");
+  const email = localStorage.getItem("email");
 
   return (
-    <>
-      <Navbar />
-      <div className="container mt-5">
-        <h3>Profile Page</h3>
-        <p>Role: {role}</p>
-        <p>Edit profile functionality coming soon...</p>
-      </div>
-    </>
+    <Layout>
+      <h3>Your Profile</h3>
+      <p><strong>Role:</strong> {role}</p>
+      <p><strong>Email:</strong> {email || "Your email here"}</p>
+      <p>Profile editing feature coming soon...</p>
+    </Layout>
   );
 }
