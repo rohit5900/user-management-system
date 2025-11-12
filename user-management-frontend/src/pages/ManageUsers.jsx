@@ -9,11 +9,19 @@ export default function ManageUsers() {
   const API = import.meta.env.VITE_API_BASE_URL;
 
   const fetchUsers = async () => {
+  try {
     const res = await axios.get(`${API}/users`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+    console.log("Fetched users:", res.data);
     setUsers(res.data);
-  };
+  } catch (err) {
+    console.error("Error fetching users:", err.response?.data || err.message);
+    setUsers([]); // fallback to empty array
+  }
+};
+
+
 
   const saveUser = async () => {
     await axios.put(`${API}/users/${editUser._id}`, editUser, {
@@ -42,18 +50,37 @@ export default function ManageUsers() {
           <tr><th>Name</th><th>Email</th><th>Role</th><th>Actions</th></tr>
         </thead>
         <tbody>
-          {users.map(u => (
-            <tr key={u._id}>
-              <td>{u.name}</td>
-              <td>{u.email}</td>
-              <td>{u.role}</td>
-              <td>
-                <button className="btn btn-sm btn-warning me-2" onClick={() => setEditUser(u)}>Edit</button>
-                <button className="btn btn-sm btn-danger" onClick={() => deleteUser(u._id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+  {Array.isArray(users) && users.length > 0 ? (
+    users.map((u) => (
+      <tr key={u._id}>
+        <td>{u.name}</td>
+        <td>{u.email}</td>
+        <td>{u.role}</td>
+        <td>
+          <button
+            className="btn btn-sm btn-warning me-2"
+            onClick={() => setEditUser(u)}
+          >
+            Edit
+          </button>
+          <button
+            className="btn btn-sm btn-danger"
+            onClick={() => deleteUser(u._id)}
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan="4" className="text-center text-muted">
+        No users found or data failed to load
+      </td>
+    </tr>
+  )}
+</tbody>
+
       </table>
 
       {editUser && (
