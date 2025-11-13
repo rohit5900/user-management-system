@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
-const cors = require("cors");           // 👈 Add this line
+const cors = require("cors");
 const connectDB = require("./config/db");
 const app = express();
 
@@ -9,56 +9,35 @@ connectDB();
 
 const isDev = process.env.NODE_ENV !== "production";
 
-// ✅ Enable CORS before Helmet
+// IMPORTANT: Body parsers MUST come BEFORE routes
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// CORS
 app.use(
   cors({
-    origin: isDev ? "http://localhost:5173" : "https://yourfrontenddomain.com",
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
 
+// Serve uploaded profile images
+app.use("/uploads", express.static("uploads"));
+
 if (isDev) {
-  // Relaxed CSP for local development
   app.use(
     helmet({
-      contentSecurityPolicy: {
-        directives: {
-          defaultSrc: ["'self'"],
-          connectSrc: [
-            "'self'",
-            "http://localhost:5000",
-            "http://localhost:5173",  // 👈 allow React frontend too
-            "ws://localhost:5000",
-            "http://127.0.0.1:9222",
-            "http://localhost:9222",
-            "https://chrome-devtools-frontend.appspot.com",
-          ],
-          scriptSrc: ["'self'", "'unsafe-inline'"],
-          styleSrc: ["'self'", "'unsafe-inline'"],
-          imgSrc: ["'self'", "data:"],
-        },
-      },
+      contentSecurityPolicy: false,
     })
   );
 } else {
-  // Strict CSP for production
-  app.use(
-    helmet.contentSecurityPolicy({
-      directives: {
-        defaultSrc: ["'self'"],
-        connectSrc: ["'self'"],
-        scriptSrc: ["'self'"],
-        styleSrc: ["'self'"],
-        imgSrc: ["'self'", "data:"],
-      },
-    })
-  );
+  app.use(helmet());
 }
 
-app.use(express.json());
-
-// Routes
+// Register routes
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/users", require("./routes/userRoutes"));
+app.use("/attendance", require("./routes/attendanceRoutes"));
 
-app.listen(5000, () => console.log("✅ Server running on http://localhost:5000"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
