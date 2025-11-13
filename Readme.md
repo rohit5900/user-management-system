@@ -1,88 +1,88 @@
-# 🧑‍💼 User Management System
+🧑‍💼 User Management System
 
-A **full-stack MERN (MongoDB, Express, React, Node.js)** application for managing users with **role-based access control**.
+A full-stack MERN (MongoDB, Express, React, Node.js) application for managing users with role-based access control (RBAC).
 
-Admins can add, edit, and delete users, while employees can view and edit their own profiles.  
-The project demonstrates authentication, authorization, and CRUD functionality with clean UI and REST API integration.
+👑 Admins can add, edit, or delete any user.
+👨‍💼 Employees can view & update their own profile.
 
----
+The project includes:
 
-## 🚀 Tech Stack
+Authentication (JWT)
 
-| Layer | Technology |
-|-------|-------------|
-| Frontend | React + Vite + Bootstrap |
-| Backend | Node.js + Express |
-| Database | MongoDB (Mongoose ODM) |
-| Authentication | JWT (JSON Web Token) |
-| Authorization | Role-based (Admin / Employee) |
+Authorization (Admin/Employee)
 
----
+Profile page
 
-## 🧭 Project Structure
+CRUD operations
 
+Clean UI with Bootstrap
+
+REST API integration
+
+🚀 Tech Stack
+Layer	Technology
+Frontend	React + Vite + Bootstrap
+Backend	Node.js + Express
+Database	MongoDB (Mongoose ODM)
+Authentication	JSON Web Tokens (JWT)
+Password Security	Bcrypt
+🧭 Project Structure
 user-management-project/
-├── user-management/ # Backend (Express + MongoDB)
-│ ├── server.js
-│ ├── routes/
-│ ├── models/
-│ ├── middleware/
-│ ├── config/
-│ ├── package.json
-│ └── .env.example
+├── user-management-backend/        # Backend (Express + MongoDB)
+│   ├── server.js
+│   ├── routes/
+│   ├── models/
+│   ├── middleware/
+│   ├── config/
+│   ├── uploads/                   # Profile photos
+│   ├── package.json
+│   └── .env.example
 │
-├── user-management-frontend/ # Frontend (React + Vite)
-│ ├── src/
-│ ├── public/
-│ ├── package.json
-│ └── vite.config.js
+├── user-management-frontend/       # Frontend (React + Vite)
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.js
 │
 └── README.md
 
-
----
-
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/your-username/user-management-system.git
+⚙️ Installation & Setup
+1️⃣ Clone the Repository
+git clone https://github.com/rohit5900/user-management-system.git
 cd user-management-system
 
-2️⃣ Backend Setup
-cd user-management
+🗄️ Backend Setup
+cd user-management-backend
 npm install
 
-
-Create a .env file:
-
+Create .env file:
 MONGO_URI=mongodb://127.0.0.1:27017/user-management
 JWT_SECRET=yourSecretKey
+NODE_ENV=development
 
-
-Then run the server:
-
+Start backend server:
 npm run dev
 
 
-Backend will run on:
-➡️ http://localhost:5000
+Backend will run at:
 
-3️⃣ Frontend Setup
+👉 http://localhost:5000
+
+🎨 Frontend Setup
 cd ../user-management-frontend
 npm install
 npm run dev
 
 
-Frontend will run on:
-➡️ http://localhost:5173
+Frontend will run at:
+
+👉 http://localhost:5173
 
 🔑 Default Admin Login
 
-After backend starts, create an admin account using Thunder Client or Postman:
+After backend starts, manually create an admin using Thunder Client / Postman:
 
 POST → http://localhost:5000/auth/register
-
 {
   "name": "Admin User",
   "email": "admin@example.com",
@@ -91,41 +91,89 @@ POST → http://localhost:5000/auth/register
 }
 
 
-Then log in on the frontend with:
+Then log in on frontend:
 
 Email: admin@example.com
 
 Password: Admin@123
 
 🧠 Features
+🔐 Authentication & Security
 
-✅ User Registration & Login (JWT-based)
-✅ Role-based Access Control
-✅ Admin Dashboard (Add / Edit / Delete users)
-✅ Employee Dashboard (View own info)
-✅ Secure Authentication using Bcrypt
-✅ MongoDB Integration via Mongoose
-✅ Responsive UI with Bootstrap
-✅ Protected Frontend Routes
+JWT-based login
+
+Bcrypt password hashing
+
+Protected routes (frontend + backend)
+
+👑 Admin Features
+
+Add Users
+
+Edit Users
+
+Delete Users
+
+View All Users
+
+Admin Dashboard with analytics
+
+Notifications
+
+👨‍💼 Employee Features
+
+View profile
+
+Update profile
+
+Upload profile photo
+
+Mark attendance
+
+View attendance history
+
+🎨 UI Features
+
+Responsive design with Bootstrap
+
+Dark mode toggle
+
+Clean dashboard UI
+
+Recharts analytics
 
 🧩 API Endpoints
+Auth Routes
 Method	Endpoint	Description	Access
 POST	/auth/register	Register new user	Public
 POST	/auth/login	Login user	Public
+POST	/auth/change-password	Change password	Authenticated
+User Routes
+Method	Endpoint	Description	Access
 GET	/users	Fetch all users	Admin
 PUT	/users/:id	Update user	Admin
 DELETE	/users/:id	Delete user	Admin
-📷 Screenshots
+GET	/users/me	Get current user profile	Authenticated
+PUT	/users/me	Update profile	Authenticated
+POST	/users/upload-photo	Upload profile picture	Authenticated
+Attendance Routes
+Method	Endpoint	Description	Access
+POST	/attendance/mark	Mark attendance	Authenticated
+GET	/attendance/me	Get attendance history	Authenticated
+GET	/attendance	All attendance records	Admin
+📷 Screenshots (Optional)
 
-Add screenshots of:
+You can add the following:
 
-Login Page
+Page	Screenshot
+Login Page	(add image link)
+Admin Dashboard	(add image link)
+Manage Users	(add image link)
+Profile Page	(add image link)
 
-Admin Dashboard
-
-Manage Users Page
-
-(You can upload images in your GitHub repo’s /assets folder and reference them here.)
+Upload images to:
+/user-management-frontend/assets/
+or GitHub’s built-in image uploader.
 
 🧰 Tools Used
 
@@ -133,19 +181,22 @@ VS Code + Thunder Client
 
 MongoDB Compass
 
-Vite Development Server
+Vite Dev Server
 
-Git + GitHub
+Git & GitHub
 
 🧾 License
 
-This project is open-source under the MIT License — feel free to use and modify.
+This project is open-source under the MIT License.
+Feel free to use, modify, and contribute.
 
-💬 Author
+👤 Author
 
-👤 Rohit Swami
+Rohit Swami
 📧 swamirohit11215@gmail.com
-]
-🔗 https://github.com/rohit5900
 
-⭐ If you like this project, give it a star on GitHub to show support!
+🔗 GitHub: https://github.com/rohit5900
+
+⭐ Support
+
+If you like this project, please star the repo ⭐ on GitHub — it motivates me to build more!
