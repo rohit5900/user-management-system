@@ -27,7 +27,8 @@ Database	MongoDB (Mongoose ODM)
 Authentication	JSON Web Tokens (JWT)
 Password Security	Bcrypt
 🧭 Project Structure
-![Uploading image.png…]()
+<img> src=<img width="440" height="365" alt="image" src="https://github.com/user-attachments/assets/e677d614-22bd-439c-a9d5-f8bbf479cd8b" />
+
 
 
 ⚙️ Installation & Setup
