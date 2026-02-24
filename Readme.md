@@ -27,24 +27,8 @@ Database	MongoDB (Mongoose ODM)
 Authentication	JSON Web Tokens (JWT)
 Password Security	Bcrypt
 🧭 Project Structure
-user-management-project/
-├── user-management-backend/        # Backend (Express + MongoDB)
-│   ├── server.js
-│   ├── routes/
-│   ├── models/
-│   ├── middleware/
-│   ├── config/
-│   ├── uploads/                   # Profile photos
-│   ├── package.json
-│   └── .env.example
-│
-├── user-management-frontend/       # Frontend (React + Vite)
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.js
-│
-└── README.md
+![Uploading image.png…]()
+
 
 ⚙️ Installation & Setup
 1️⃣ Clone the Repository
