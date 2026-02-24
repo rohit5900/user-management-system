@@ -26,6 +26,9 @@ Backend	Node.js + Express
 Database	MongoDB (Mongoose ODM)
 Authentication	JSON Web Tokens (JWT)
 Password Security	Bcrypt
+
+
+
 🧭 Project Structure
 <img> src=<img width="440" height="365" alt="image" src="https://github.com/user-attachments/assets/e677d614-22bd-439c-a9d5-f8bbf479cd8b" />
 
@@ -41,7 +44,7 @@ cd user-management-backend
 npm install
 
 Create .env file:
-MONGO_URI=mongodb://127.0.0.1:27017/user-management
+MONGO_URI=mongo link
 JWT_SECRET=yourSecretKey
 NODE_ENV=development
 
